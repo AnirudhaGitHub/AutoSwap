@@ -53,23 +53,6 @@ contract AutoSwap{
         IBaseV1Router.route[] cantoRoute;
     }
 
-    function getBestSwap(address tokenIn, address tokenOut, uint amountIn, IBaseV1Router.route[] calldata cantoRoute)public view returns(uint, uint){
-        // Get Canto DEX price
-        // (uint cantoAmountOut, bool stable) = cantoRouter.getAmountOut(amountIn, tokenIn, tokenOut);
-        uint[] memory cantoAmountsOut = cantoRouter.getAmountsOut(amountIn, cantoRoute);
-        uint cantoAmountOut = cantoAmountsOut[cantoAmountsOut.length - 1]; // Last element is the output amount
-         
-        // get cadence price
-        (uint amountOutAfterFees, ) = cadenceReader.getAmountOut(
-            IVault(cadenceVault),
-            tokenIn,
-            tokenOut, 
-            amountIn
-        );
-
-        return (cantoAmountOut, amountOutAfterFees);
-    }
-
     function getBestSwapSplit(BestSwapParams memory params) public view returns(uint bestCantoPercentage, uint bestCadencePercentage, uint bestAmountOut) {
         uint bestCantoAmountOut = 0;
         uint bestCadenceAmountOut = 0;
@@ -143,53 +126,6 @@ contract AutoSwap{
         IERC20(tokenIn).transfer(msg.sender, balanceAfter - balanceBefore);
     }
 
-
-    function swapTokens(
-        uint amountIn,
-        uint amountOutMin,
-        address tokenFrom,
-        address tokenTo,
-        bool stable,
-        address to,
-        uint deadline
-    ) external {
-        
-        IERC20(tokenFrom).transferFrom(msg.sender, address(this), amountIn);
-        IERC20(tokenFrom).approve(address(cantoRouter), amountIn);
-        // Call the swapExactTokensForTokensSimple function from the cantoRouter
-        uint[] memory amounts = cantoRouter.swapExactTokensForTokensSimple(
-            amountIn,
-            amountOutMin,
-            tokenFrom,
-            tokenTo,
-            stable,
-            to,
-            deadline
-        );
-    }
-
-    function swapTokensWithCadenceRouter(
-        address[] memory path,
-        uint256 amountIn,
-        uint256 minOut,
-        address receiver
-    ) external {
-        // Transfer the tokens from the sender to this contract
-        IERC20(path[0]).transferFrom(msg.sender, address(this), amountIn);
-
-        // Approve the CadenceRouter to spend the tokens
-        IERC20(path[0]).approve(address(cadenceRouter), amountIn);
-
-        // Call the swap function from the CadenceRouter
-        cadenceRouter.swap(
-            path,
-            amountIn,
-            minOut,
-            receiver
-        );
-
-        // Additional logic after the swap can be added here
-    }
 }
 
 
