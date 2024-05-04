@@ -331,8 +331,8 @@ async function approve(){
         </div>
         {/* <div style={{ marginTop: "10px" }}> */}
           <br />
-          <span style={{ color: "#999" }}>Canto Percentage: {cantoPercent}%</span>
-          <span style={{ color: "#999" }}>Cadence Percentage: {cadencePercent}%</span>
+          <span style={{ color: "#999" }}>Canto Percentage: {cantoPercent ? cantoPercent.toString() + " %" : " - "}</span>
+          <span style={{ color: "#999" }}>Cadence Percentage: {cadencePercent ? cantoPercent.toString() + " %" : " - "}%</span>
         {/* </div> */}
 
         <div 

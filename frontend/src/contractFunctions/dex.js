@@ -123,13 +123,6 @@ function getRoute(tokenIn, tokenOut) {
   return filteredRoutes.length > 0 ? filteredRoutes[0] : [];
 }
 
-module.exports = {
-  swapTokens,
-  getAllowance,
-  approveToken,
-  previewSwap
-}
-
 // icon
 // cNOTE / USDC
 // icon
