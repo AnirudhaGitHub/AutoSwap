@@ -4,7 +4,7 @@ const IERC20 = require("../constants/abis/IERC20.json")
 const tokenList = require("../tokenList.json")
 const dexAddress = '0x59b670e9fA9D0A427751Af201D676719a970857b'; //0x59b670e9fA9D0A427751Af201D676719a970857b
 // 0x0E692f65a56635e89D000CE6a760653f7497F021
-async function swapTokens(tokenIn, tokenOut, amountInCanto, amountInCadence, amountOutMin, cantoRoute) {
+export async function swapTokens(tokenIn, tokenOut, amountInCanto, amountInCadence, amountOutMin, cantoRoute) {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -24,7 +24,7 @@ async function swapTokens(tokenIn, tokenOut, amountInCanto, amountInCadence, amo
     }
 }
 
-async function previewSwap(provider, tokenIn, tokenOut, amountIn, tokenInSym, tokenOutSym) {
+export async function previewSwap(provider, tokenIn, tokenOut, amountIn, tokenInSym, tokenOutSym) {
   try {
     const cantoRoute = getPath( tokenInSym, tokenOutSym)
     const params = {
@@ -45,7 +45,7 @@ async function previewSwap(provider, tokenIn, tokenOut, amountIn, tokenInSym, to
   }
 }
 
-async function getAllowance(tokenAddress, ownerAddress, spenderAddress, provider) {
+export async function getAllowance(tokenAddress, ownerAddress, spenderAddress, provider) {
 
   const tokenContract = new ethers.Contract(tokenAddress, IERC20, provider);
 
@@ -59,7 +59,7 @@ async function getAllowance(tokenAddress, ownerAddress, spenderAddress, provider
   }
 }
 
-async function approveToken(tokenAddress, spenderAddress, amount, signer) {
+export async function approveToken(tokenAddress, spenderAddress, amount, signer) {
   const tokenContract = new ethers.Contract(tokenAddress, IERC20, signer);
 
   // Call the approve function
@@ -193,6 +193,3 @@ function getAddressByTicker(ticker) {
       return "0x0000000000000000000000000000000000000000";
   }
 }
-
-
-console.log(getPath("USDC", "WCANTO")); // Output: 0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687

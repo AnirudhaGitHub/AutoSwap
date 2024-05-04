@@ -10,7 +10,7 @@ function Header(props) {
     <header>
       <div className="leftH">
         {/* <img src={Logo} alt="logo" className="logo" /> */}
-        <h2>DEX AGG</h2>
+        <h2>AutoSwap</h2>
         {/* <Link to="/" className="link">
           <div className="headerItem">Swap</div>
         </Link> */}
