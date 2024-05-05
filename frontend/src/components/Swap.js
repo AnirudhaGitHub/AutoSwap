@@ -338,6 +338,7 @@ async function approve(){
         </div>
         {/* <div style={{ marginTop: "10px" }}> */}
           <br />
+          <span style={{ marginBottom:"5px" }}>DEX split for best Returns :</span>
           <span style={{ color: "#999" }}>Canto Percentage: {cantoPercent ? cantoPercent.toString() + " %" : " - "}</span>
           <span style={{ color: "#999" }}>Cadence Percentage: {cadencePercent ? cadencePercent.toString() + " %" : " - "}</span>
         {/* </div> */}

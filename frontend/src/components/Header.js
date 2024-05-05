@@ -29,7 +29,7 @@ function Header(props) {
                   :
                   address.slice(0,4) +"..." +address.slice(38)
               )
-            : "Connect"
+            : "Connect Metamask"
           }
         </div>
       </div>
