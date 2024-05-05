@@ -15,9 +15,11 @@ The AutoSwap is a decentralized exchange (DEX) aggregator, built on two underlyi
 
 
 ## Deployment link
+(Note: The dapp currently only supports Metamask wallet. so please download that before wallet connection)
+
 https://auto-swap.vercel.app/
 
-## Video demo: (Note: The dapp currently only supports Metamask wallet. so please download that before wallet connection)
+## Video demo:
 
 
 
