@@ -102,7 +102,7 @@ contract AutoSwap{
                 0,
                 cantoRoute,
                 address(this), // to
-                block.timestamp
+                block.timestamp + 1
             );
         }
         
@@ -123,7 +123,7 @@ contract AutoSwap{
         uint balanceAfter = IERC20(tokenOut).balanceOf(address(this));
         require(amountOutMin <= balanceAfter - balanceBefore, "slippage hit");
         
-        IERC20(tokenIn).transfer(msg.sender, balanceAfter - balanceBefore);
+        IERC20(tokenOut).transfer(msg.sender, balanceAfter - balanceBefore);
     }
 
 }

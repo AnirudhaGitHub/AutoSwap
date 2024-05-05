@@ -19,8 +19,8 @@ contract TokenSwapperTest is Test {
 
     function testGetBestSwap() public {
         
-        address tokenFrom = address(0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687); // Replace with actual token address
-        address tokenTo = address(0x826551890Dc65655a0Aceca109aB11AbDbD7a07B);
+        address tokenFrom = address(0x826551890Dc65655a0Aceca109aB11AbDbD7a07B); // Replace with actual token address
+        address tokenTo = address(0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687);
         uint amountIn = 100e18;
         
         IBaseV1Router.route[] memory cantoRoute = new IBaseV1Router.route[](1);
@@ -39,7 +39,7 @@ contract TokenSwapperTest is Test {
 
         deal(tokenFrom, address(this), amountIn);
         IERC20(tokenFrom).approve(address(swapper), amountIn);
-        swapper.swap(tokenFrom, tokenTo, 0, amountIn, 0, cantoRoute);
+        swapper.swap(tokenFrom, tokenTo, 0, amountIn, 1e15, cantoRoute);
 
         console.log("getBestSwapSplit ", 
             bestCantoPercentage,

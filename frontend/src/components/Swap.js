@@ -29,7 +29,7 @@ const tokenLogo = {
   NOTE: note
 }
 
-const dexAddress = "0x59b670e9fA9D0A427751Af201D676719a970857b"
+const dexAddress = "0xe626C5b2CC46C0B75dd7D26192b56615889712f5"
 function Swap(props) {
   // const { data: signer } = useSigner({chainId: sepolia.id});
   const { address, isConnected } = props;
@@ -55,15 +55,20 @@ function Swap(props) {
   const [cantoRoute, setCantoRoute] = useState([]);
   const [cantoSplitAmount, setCantoSpiltAmount] = useState(null);
   const [cadenceSplitAmount, setCadenceSpiltAmount] = useState(null);
-  const [cantoPercent, setCantoPercent] = useState(90);
-  const [cadencePercent, setCadencePercent] = useState(10);
+  const [cantoPercent, setCantoPercent] = useState(null);
+  const [cadencePercent, setCadencePercent] = useState(null);
   
 async function callSwap(){
     try {
       // tokenIn, tokenOut, amountInCanto, amountInCadence, amountOutMin, cantoRoute
       setSwapLoading(true); // Set loading state to true before calling the swap function
-      console.log("swap ", tokenOne.address, tokenTwo.address, cantoSplitAmount, cadenceSplitAmount, 0, cantoRoute)
-      const res = await swapTokens(tokenOne.address, tokenTwo.address, cantoSplitAmount, cadenceSplitAmount, 0, cantoRoute);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+      const signer = provider.getSigner();
+      let amountOutMin = (( 100 - parseFloat(slippage.toString()) ) / 100) * parseFloat(tokenTwoAmount.toString())
+      amountOutMin = ethers.utils.parseUnits(amountOutMin.toFixed(tokenTwo.decimals).toString(), tokenTwo.decimals).toString()
+      console.log("swap ", tokenOne.address, tokenTwo.address, cantoSplitAmount, cadenceSplitAmount, 0, cantoRoute, amountOutMin)
+      const res = await swapTokens(signer, tokenOne.address, tokenTwo.address, cantoSplitAmount, cadenceSplitAmount, amountOutMin, cantoRoute);
       setIsSwapSuccess(res)
     } catch (error) {
       console.error("Swap failed", error);
@@ -174,6 +179,8 @@ async function approve(){
         setCantoRoute(val.cantoRoute)
         setCantoSpiltAmount(amountInCantoBN)
         setCadenceSpiltAmount(amountInCadenceBn) 
+        setCantoPercent(cantoPercent)
+        setCadencePercent(candencePercent)
         
       }
     }
@@ -332,7 +339,7 @@ async function approve(){
         {/* <div style={{ marginTop: "10px" }}> */}
           <br />
           <span style={{ color: "#999" }}>Canto Percentage: {cantoPercent ? cantoPercent.toString() + " %" : " - "}</span>
-          <span style={{ color: "#999" }}>Cadence Percentage: {cadencePercent ? cantoPercent.toString() + " %" : " - "}%</span>
+          <span style={{ color: "#999" }}>Cadence Percentage: {cadencePercent ? cadencePercent.toString() + " %" : " - "}</span>
         {/* </div> */}
 
         <div 

@@ -2,14 +2,13 @@ const {ethers} = require("ethers")
 const dex = require("../constants/abis/dex.json")
 const IERC20 = require("../constants/abis/IERC20.json")
 const tokenList = require("../tokenList.json")
-const dexAddress = '0x59b670e9fA9D0A427751Af201D676719a970857b'; //0x59b670e9fA9D0A427751Af201D676719a970857b
+const dexAddress = '0xe626C5b2CC46C0B75dd7D26192b56615889712f5'; //0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44
 // 0x0E692f65a56635e89D000CE6a760653f7497F021
-export async function swapTokens(tokenIn, tokenOut, amountInCanto, amountInCadence, amountOutMin, cantoRoute) {
+export async function swapTokens(signer, tokenIn, tokenOut, amountInCanto, amountInCadence, amountOutMin, cantoRoute) {
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
       // Create a new instance of the contract
       const contract = new ethers.Contract(dexAddress, dex, signer);
+      console.log("signer ", signer, tokenIn, tokenOut)
       
       const tx = await contract.swap(tokenIn, tokenOut, amountInCanto, amountInCadence, amountOutMin, cantoRoute, {gasLimit: "10000000"});
       console.log('Transaction hash:', tx.hash);
