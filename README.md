@@ -1,6 +1,6 @@
 # AutoSwap - DEX aggregator on Canto Mainnet
 ## The Ultimate User Interface for Maximizing Your Trades
-
+### This Project is eligible for Both Canto and cadence track (Encode X Canto)
 <img width="710" alt="image" src="https://github.com/AnirudhaGitHub/AutoSwap/assets/167628180/f07a92fe-72df-4504-b0d5-1c45b1021722">
 
 The AutoSwap is a decentralized exchange (DEX) aggregator, built on two underlying DEX platforms: Canto DEX and Cadence DEX. Its purpose is to provide users with a unified interface to interact with multiple DEXs and find the best swap rate by spliting the swap between multiple DEXes.
@@ -12,6 +12,16 @@ The AutoSwap is a decentralized exchange (DEX) aggregator, built on two underlyi
 | 2       | Cadence DEX    |
 
 <img width="597" alt="image" src="https://github.com/AnirudhaGitHub/AutoSwap/assets/167628180/50aa1e7f-e30f-4456-80ce-0f6b894e0e60">
+
+
+## Deployment link
+https://auto-swap.vercel.app/
+
+## Video demo:
+
+
+
+https://github.com/AnirudhaGitHub/AutoSwap/assets/167628180/9fd8145b-2ced-4a0f-82f5-55afccd003dd
 
 
 ## how it works:
