@@ -3,13 +3,16 @@
 
 <img width="710" alt="image" src="https://github.com/AnirudhaGitHub/AutoSwap/assets/167628180/f07a92fe-72df-4504-b0d5-1c45b1021722">
 
-The AutoSwap is a decentralized exchange (DEX) aggregator, built on two underlying DEX platforms: Canto DEX and Cadence DEX. Its purpose is to provide users with a unified interface to interact with multiple DEXs and find the best route or split for achieving the optimal trade price.
+The AutoSwap is a decentralized exchange (DEX) aggregator, built on two underlying DEX platforms: Canto DEX and Cadence DEX. Its purpose is to provide users with a unified interface to interact with multiple DEXs and find the best swap rate by spliting the swap between multiple DEXes.
 
 ## DEX Aggregator built on
 | Sr. No. | DEX            |
 |---------|----------------|
 | 1       | Canto DEX      |
 | 2       | Cadence DEX    |
+
+<img width="597" alt="image" src="https://github.com/AnirudhaGitHub/AutoSwap/assets/167628180/50aa1e7f-e30f-4456-80ce-0f6b894e0e60">
+
 
 ## how it works:
 1. DEX Aggregator Structure: The contract interfaces with two main DEX platforms, Canto DEX and Cadence DEX, through their respective router contracts (IBaseV1Router and ICadenceRouter).
@@ -28,3 +31,7 @@ function swap(address tokenIn, address tokenOut, uint amountInCanto, uint amount
 ## Mainnet Price comparision:
 <img width="959" alt="image" src="https://github.com/AnirudhaGitHub/AutoSwap/assets/167628180/b697459f-8d01-470c-b3ec-915dbdfb5433">
 In above image,  we are compairing prices of AutoSwap DEX aggregator with slingshot and cadence dex. The AutoSwap trade is giving better output as it is splitting the trade into 2 dex (10 % od input amount will be swapped in canto dex and remaining 90% will be swapped in cadence dex). 
+
+
+## Future Plans
+Our next steps are to integrate more DEX on canto mainnet and improve the best aggregator algorithm.
